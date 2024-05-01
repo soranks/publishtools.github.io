@@ -1113,7 +1113,7 @@
             const myContract2 = new web3Wss.eth.Contract(contractABI, contractAddress);
             myContract2.events.Subscribed().on('data', function(log){
               console.log('got data', log);
-              if(log.returnValues.subscriber == authcode){
+              if(log.returnValues.subscriber == web3.utils.keccak256(authcode)){
                 layer.open({ content: "订阅成功！", skin: "msg", time: 5 });
               }
             });
